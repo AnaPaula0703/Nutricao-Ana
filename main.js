@@ -1,3 +1,6 @@
+var titulo = document.querySelector(".titulo");
+titulo.textContent = "Ana Nutrição";
+
 var pacientes = document.querySelectorAll('.paciente');
 
 for (var i = 0; i < 5; i++){
@@ -17,16 +20,28 @@ for (var i = 0; i < 5; i++){
   if(peso <= 0 || peso >= 600){
     tdIMC.textContent = "Peso inválido ";
     pesoEnValido = false;
-    pacientes[i].style.color = 'blue';
+    pacientes[i].classList.add('dados-invalidos');
   }
 
   if(altura <= 0 || altura > 2.80){
     tdIMC.textContent = "Altura inválido ";
-    alturaEnValida = false;
+    alturaEnValida = false
+    pacientes[i].classList.add('dados-invalidos');
   }
 
   if (pesoEnValido && alturaEnValida){
     var imc = peso / (altura*altura);
-    tdIMC.textContent = imc;
+    tdIMC.textContent = imc.toFixed(2);
   }
 }
+
+titulo.addEventListener('click', mostrarMensagem);
+
+function mostrarMensagem (){
+  console.log("O título foi clicado");
+}
+
+var botaoAdicionar = document.querySelector("#adicionar-paciente");
+botaoAdicionar.addEventListener('click', function() {
+  console.log("Cliquei no botão adicionar");
+});
