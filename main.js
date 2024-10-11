@@ -41,7 +41,18 @@ function mostrarMensagem (){
   console.log("O título foi clicado");
 }
 
-var botaoAdicionar = document.querySelector("#adicionar-paciente");
-botaoAdicionar.addEventListener('click', function() {
-  console.log("Cliquei no botão adicionar");
+var botaoAdicionar = document.querySelector('#adicionar-paciente');
+botaoAdicionar.addEventListener('click', function(event) {
+  event.preventDefault();
+  
+  var form = document.querySelector('#form-adiciona');
+  var nomeAdicionar = form.nome.value;
+  var pesoAdicionar = form.peso.value;
+  var alturaAdicionar = form.altura.value;
+  var gorduraAdicionar = form.gordura.value;
+  
+  console.log(form.nome.value);
+  console.log(form.peso.value);
+  console.log(form.altura.value);
+  console.log(form.gordura.value);
 });
