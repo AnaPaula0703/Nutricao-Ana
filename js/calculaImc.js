@@ -20,7 +20,7 @@ for (var i = 0; i < 5; i++){
     tdIMC.textContent = "Peso inválido ";
     pesoEnValido = false;
     pacientes[i].classList.add("dados-invalidos");
-    
+
   }
 
   if(altura <= 0 || altura > 2.80){
@@ -37,8 +37,8 @@ for (var i = 0; i < 5; i++){
 
 function calculaImc(peso, altura) {
   var imc = 0;
-  
+
   imc = peso / (altura*altura);
-  
+
   return imc.toFixed(2);
 }
