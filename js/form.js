@@ -9,7 +9,14 @@ botaoAdicionar.addEventListener("click", function(event){
 
  //Criando a linha e as células da tabela do novo paciente
   var pacienteTr = montaTr(paciente);
-
+  
+  var erro = validaPaciente(paciente);
+  
+  if (erro.length > 0 ) {
+    var mensagemErro = document.querySelector("#mensagem-de-erro");
+    mensagemErro.textContent = erro;
+  }
+ 
   //Aqui adicionamos a linha com todos os seus dados na tabela do "HTML";
   var tabela = document.querySelector("#tabela-pacientes");
 
@@ -48,4 +55,12 @@ function montaTd(dado, classe) {
   td.textContent = dado;
   td.classList.add(classe);
   return td;
+}
+
+function validaPaciente(paciente) {
+  if(validaPeso(paciente.peso)){
+    return "";
+  } else {
+    return "Peso inválido!";
+  }
 }
