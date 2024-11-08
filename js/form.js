@@ -10,11 +10,11 @@ botaoAdicionar.addEventListener("click", function(event){
  //Criando a linha e as células da tabela do novo paciente
   var pacienteTr = montaTr(paciente);
   
-  var erro = validaPaciente(paciente);
+  var erros = validaPaciente(paciente);
   
-  if (erro.length > 0 ) {
-    var mensagemErro = document.querySelector("#mensagem-de-erro");
-    mensagemErro.textContent = erro;
+  if (erros.length > 0 ) {
+    exibeErros(erros);
+    return;
   }
  
   //Aqui adicionamos a linha com todos os seus dados na tabela do "HTML";
@@ -23,6 +23,15 @@ botaoAdicionar.addEventListener("click", function(event){
   tabela.appendChild(pacienteTr);
   form.reset();
 });
+
+function exibeErros(erros) {
+  var ul = document.querySelector("#mensagens-erro");
+  erros.forEach(function(erro) {
+    var li = document.createElement("li");
+    li.textContent = erro;
+    ul.appendChild(li);
+  });
+}
 
 function obtemPacienteDoFormulario(form) {
 
@@ -58,9 +67,11 @@ function montaTd(dado, classe) {
 }
 
 function validaPaciente(paciente) {
-  if(validaPeso(paciente.peso)){
-    return "";
-  } else {
-    return "Peso inválido!";
+  var erros = [];
+  if (!validaPeso(paciente.peso)){
+    erros.push("Peso inválido!");
   }
+  return erros; 
 }
+
+ 
